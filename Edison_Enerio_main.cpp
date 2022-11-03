@@ -52,6 +52,10 @@ class ImageCompression{
 
     void loadSkeleton(ifstream& in, int **arr){
         int i, j, val;
+        in>>numRows;
+        in>>numCols;
+        in>>minVal;
+        in>>maxVal;
         while(!in.eof()){
             in>>i;
             in>>j;
@@ -104,13 +108,14 @@ class ImageCompression{
                     h = ZFAry[i+1][j+1] + 1;
 
                     ZFAry[i][j] = min(min(min(min(e, f), g), h), px);
+                }
 
-                    if(ZFAry[i][j] > newMaxVal){
-                        newMaxVal = ZFAry[i][j];
-                    }
-                    if(ZFAry[i][j] < newMinVal){
-                        newMinVal = ZFAry[i][j];
-                    }
+                if(ZFAry[i][j] > newMaxVal){
+                    newMaxVal = ZFAry[i][j];
+                }
+
+                if(ZFAry[i][j] < newMinVal){
+                    newMinVal = ZFAry[i][j];
                 }
             }
         }
@@ -336,8 +341,8 @@ int main(int argc, char *argv[]){
     //step 14
     deCompressFile << obj.numRows << " ";
     deCompressFile << obj.numCols << " ";
-    deCompressFile << obj.newMinVal << " ";
-    deCompressFile << obj.newMaxVal << " ";
+    deCompressFile << obj.minVal << " ";
+    deCompressFile << obj.maxVal << " ";
     deCompressFile << endl;
 
     //step 15
