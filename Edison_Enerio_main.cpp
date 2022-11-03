@@ -159,7 +159,11 @@ class ImageCompression{
 
     void extractSkelecton(int **sk, ofstream& out){
         //if skeletonAry[i][j] > 0, then write the triplet (i,j,skeletonAry[i][j] to skeletonFile)
-
+        out << numRows << " ";
+        out << numCols << " ";
+        out << minVal << " ";
+        out << maxVal << endl;
+        
         for(int i=1; i<=numRows; i++){
             for(int j=1; j<=numCols; j++){
                 if(sk[i][j] > 0){
